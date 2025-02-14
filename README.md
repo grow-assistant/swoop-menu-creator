@@ -103,6 +103,6 @@ The process generates several files:
 
 ## Notes
 
-- Ensure PDF files are text-searchable for optimal extraction
-- The Gemini AI model requires an active internet connection
-- Generated seed files should be reviewed before database insertion
+- Ensure PDF files are text-searchable for optimal extraction.
+- The Gemini AI model requires an active internet connection.
+- Generated seed files should be reviewed before database insertion.
