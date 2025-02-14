@@ -802,82 +802,6 @@
                   ]
                 },
                 {
-                  "name": "Philly Cheesesteak",
-                  "description": "Sliced roasted steak with peppers, onions, and mushrooms, topped with provolone cheese in a footlong hoagie roll. Served with your choice of side.",
-                  "price": 16.0,
-                  "options": [
-                    {
-                      "name": "Choice of Side",
-                      "min": 1,
-                      "max": 1,
-                      "optionItems": [
-                        {
-                          "name": "French Fries",
-                          "description": "French Fries",
-                          "price": 0
-                        },
-                        {
-                          "name": "Sweet Potato Fries",
-                          "description": "Sweet Potato Fries",
-                          "price": 0
-                        },
-                        {
-                          "name": "Onion Rings",
-                          "description": "Onion Rings",
-                          "price": 0
-                        },
-                        {
-                          "name": "Fruit",
-                          "description": "Fruit",
-                          "price": 0
-                        },
-                        {
-                          "name": "Homemade Chips",
-                          "description": "Homemade Chips",
-                          "price": 0
-                        },
-                        {
-                          "name": "Pasta Salad",
-                          "description": "Pasta Salad",
-                          "price": 0
-                        },
-                        {
-                          "name": "Potato Salad",
-                          "description": "Potato Salad",
-                          "price": 0
-                        }
-                      ]
-                    },
-                    {
-                      "name": "Remove Options",
-                      "min": 0,
-                      "max": 0,
-                      "optionItems": [
-                        {
-                          "name": "No Cheese",
-                          "description": "No Cheese",
-                          "price": 0
-                        },
-                        {
-                          "name": "No Onion",
-                          "description": "No Onion",
-                          "price": 0
-                        },
-                        {
-                          "name": "No Mushroom",
-                          "description": "No Mushroom",
-                          "price": 0
-                        },
-                        {
-                          "name": "No Pepper",
-                          "description": "No Pepper",
-                          "price": 0
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
                   "name": "JP's Club Sandwich",
                   "description": "Black forest ham, roasted turkey, and smoked bacon with Swiss and cheddar cheeses, crisp leaf lettuce, tomato and mayo on three slices of your choice of bread.",
                   "price": 14.0,
@@ -962,77 +886,6 @@
                         {
                           "name": "No Mayo",
                           "description": "No Mayo",
-                          "price": 0
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "name": "The Italian",
-                  "description": "Ham, capicola, and pepperoni with lettuce, oil and vinegar, and banana peppers in a footlong hoagie roll. Served with your choice of side.",
-                  "price": 15.0,
-                  "options": [
-                    {
-                      "name": "Choice of Side",
-                      "min": 1,
-                      "max": 1,
-                      "optionItems": [
-                        {
-                          "name": "French Fries",
-                          "description": "French Fries",
-                          "price": 0
-                        },
-                        {
-                          "name": "Sweet Potato Fries",
-                          "description": "Sweet Potato Fries",
-                          "price": 0
-                        },
-                        {
-                          "name": "Onion Rings",
-                          "description": "Onion Rings",
-                          "price": 0
-                        },
-                        {
-                          "name": "Fruit",
-                          "description": "Fruit",
-                          "price": 0
-                        },
-                        {
-                          "name": "Homemade Chips",
-                          "description": "Homemade Chips",
-                          "price": 0
-                        },
-                        {
-                          "name": "Pasta Salad",
-                          "description": "Pasta Salad",
-                          "price": 0
-                        },
-                        {
-                          "name": "Potato Salad",
-                          "description": "Potato Salad",
-                          "price": 0
-                        }
-                      ]
-                    },
-                    {
-                      "name": "Remove Options",
-                      "min": 0,
-                      "max": 0,
-                      "optionItems": [
-                        {
-                          "name": "No Ham",
-                          "description": "No Ham",
-                          "price": 0
-                        },
-                        {
-                          "name": "No Lettuce",
-                          "description": "No Lettuce",
-                          "price": 0
-                        },
-                        {
-                          "name": "No Pepper",
-                          "description": "No Pepper",
                           "price": 0
                         }
                       ]
@@ -1131,9 +984,156 @@
                   ]
                 },
                 {
+                  "name": "Philly Cheesesteak",
+                  "description": "Sliced roasted steak with peppers, onions, and mushrooms, topped with provolone cheese in a footlong hoagie roll. Served with your choice of side.",
+                  "price": 16.0,
+                  "options": [
+                    {
+                      "name": "Choice of Side",
+                      "min": 1,
+                      "max": 1,
+                      "optionItems": [
+                        {
+                          "name": "French Fries",
+                          "description": "French Fries",
+                          "price": 0
+                        },
+                        {
+                          "name": "Sweet Potato Fries",
+                          "description": "Sweet Potato Fries",
+                          "price": 0
+                        },
+                        {
+                          "name": "Onion Rings",
+                          "description": "Onion Rings",
+                          "price": 0
+                        },
+                        {
+                          "name": "Fruit",
+                          "description": "Fruit",
+                          "price": 0
+                        },
+                        {
+                          "name": "Homemade Chips",
+                          "description": "Homemade Chips",
+                          "price": 0
+                        },
+                        {
+                          "name": "Pasta Salad",
+                          "description": "Pasta Salad",
+                          "price": 0
+                        },
+                        {
+                          "name": "Potato Salad",
+                          "description": "Potato Salad",
+                          "price": 0
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Cheese",
+                          "description": "No Cheese",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Onion",
+                          "description": "No Onion",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Mushroom",
+                          "description": "No Mushroom",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Pepper",
+                          "description": "No Pepper",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "The Italian",
+                  "description": "Ham, capicola, and pepperoni with lettuce, oil and vinegar, and banana peppers in a footlong hoagie roll. Served with your choice of side.",
+                  "price": 15.0,
+                  "options": [
+                    {
+                      "name": "Choice of Side",
+                      "min": 1,
+                      "max": 1,
+                      "optionItems": [
+                        {
+                          "name": "French Fries",
+                          "description": "French Fries",
+                          "price": 0
+                        },
+                        {
+                          "name": "Sweet Potato Fries",
+                          "description": "Sweet Potato Fries",
+                          "price": 0
+                        },
+                        {
+                          "name": "Onion Rings",
+                          "description": "Onion Rings",
+                          "price": 0
+                        },
+                        {
+                          "name": "Fruit",
+                          "description": "Fruit",
+                          "price": 0
+                        },
+                        {
+                          "name": "Homemade Chips",
+                          "description": "Homemade Chips",
+                          "price": 0
+                        },
+                        {
+                          "name": "Pasta Salad",
+                          "description": "Pasta Salad",
+                          "price": 0
+                        },
+                        {
+                          "name": "Potato Salad",
+                          "description": "Potato Salad",
+                          "price": 0
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Ham",
+                          "description": "No Ham",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Lettuce",
+                          "description": "No Lettuce",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Pepper",
+                          "description": "No Pepper",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
                   "name": "JP's Ace",
                   "description": "An Angus beef hotdog topped with chili, coleslaw, mustard and diced red onions in a warmed roll. Solo or with a side.",
-                  "price": 4.0,
+                  "price": 6.0,
                   "options": [
                     {
                       "name": "Choice of Side",
@@ -1209,7 +1209,7 @@
                 {
                   "name": "Soup of the Day",
                   "description": "",
-                  "price": 4.0,
+                  "price": 6.0,
                   "options": []
                 },
                 {
@@ -1557,60 +1557,6 @@
                         {
                           "name": "No Onion",
                           "description": "No Onion",
-                          "price": 0
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "name": "Top any salad with:",
-                  "description": "",
-                  "price": 6.0,
-                  "options": [
-                    {
-                      "name": "Salad Dressing",
-                      "min": 1,
-                      "max": 1,
-                      "optionItems": [
-                        {
-                          "name": "Balsalmic",
-                          "description": "Balsalmic",
-                          "price": 0
-                        },
-                        {
-                          "name": "Caesar",
-                          "description": "Caesar",
-                          "price": 0
-                        },
-                        {
-                          "name": "Ranch",
-                          "description": "Ranch",
-                          "price": 0
-                        },
-                        {
-                          "name": "Bleu Cheese",
-                          "description": "Bleu Cheese",
-                          "price": 0
-                        },
-                        {
-                          "name": "Honey Mustard",
-                          "description": "Honey Mustard",
-                          "price": 0
-                        },
-                        {
-                          "name": "Italian",
-                          "description": "Italian",
-                          "price": 0
-                        },
-                        {
-                          "name": "Thousand Island",
-                          "description": "Thousand Island",
-                          "price": 0
-                        },
-                        {
-                          "name": "Balsalmic Vinaigrette",
-                          "description": "Balsalmic Vinaigrette",
                           "price": 0
                         }
                       ]
