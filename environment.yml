@@ -1,0 +1,16 @@
+name: my_gemini_env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9.21
+  - pip=25.0
+  - pip:
+    - annotated-types==0.7.0
+    - google-generativeai==0.8.4
+    - pydantic==2.10.6
+    - python-dotenv==1.0.1
+    - pypdf2==3.0.1
+    - tqdm==4.67.1
+    - requests==2.32.3
+    - websockets==14.2 
