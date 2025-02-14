@@ -53,7 +53,7 @@
                       ]
                     },
                     {
-                      "name": "Quantity",
+                      "name": "Options",
                       "min": 1,
                       "max": 1,
                       "optionItems": [
@@ -66,6 +66,23 @@
                           "name": "Twelve Wings",
                           "description": "Twelve Wings",
                           "price": 5
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Wings Dipping Sauce",
+                      "min": 1,
+                      "max": 1,
+                      "optionItems": [
+                        {
+                          "name": "Ranch",
+                          "description": "Ranch",
+                          "price": 0
+                        },
+                        {
+                          "name": "Blue Cheese",
+                          "description": "Blue Cheese",
+                          "price": 0
                         }
                       ]
                     }
@@ -446,7 +463,7 @@
                 {
                   "name": "Top any salad with:",
                   "description": "",
-                  "price": 4,
+                  "price": 6,
                   "options": [
                     {
                       "name": "Protein Choice",
@@ -456,17 +473,17 @@
                         {
                           "name": "Grilled or Fried Chicken",
                           "description": "Grilled or Fried Chicken",
-                          "price": 2
+                          "price": 0
                         },
                         {
                           "name": "6oz Salmon",
                           "description": "6oz Salmon",
-                          "price": 6
+                          "price": 4
                         },
                         {
-                          "name": "3 Grilled or Fried Shrimp",
-                          "description": "3 Grilled or Fried Shrimp",
-                          "price": 0
+                          "name": "3 Grilled or Friend Shrimp",
+                          "description": "3 Grilled or Friend Shrimp",
+                          "price": -2
                         }
                       ]
                     }
@@ -489,7 +506,7 @@
                 },
                 {
                   "name": "Fish and Chips",
-                  "description": "Two battered cod filets fried golden and served with an order of French fries and tartar sau\u0441\u0435.",
+                  "description": "Two battered cod filets fried golden and served with an order of French fries and tartar sauce.",
                   "price": 16
                 },
                 {
@@ -595,13 +612,13 @@
                           "price": 0
                         },
                         {
-                          "name": "Capicola",
-                          "description": "Capicola",
+                          "name": "Roast Beef",
+                          "description": "Roast Beef",
                           "price": 0
                         },
                         {
-                          "name": "Roast Beef",
-                          "description": "Roast Beef",
+                          "name": "Capicola",
+                          "description": "Capicola",
                           "price": 0
                         }
                       ]
@@ -622,8 +639,8 @@
                           "price": 0
                         },
                         {
-                          "name": "Flour Wrap",
-                          "description": "Flour Wrap",
+                          "name": "Wrap",
+                          "description": "Wrap",
                           "price": 0
                         },
                         {
@@ -633,7 +650,7 @@
                         },
                         {
                           "name": "Gluten Free Wrap",
-                          "description": "Gluten Free Wrap (+$1)",
+                          "description": "Gluten Free Wrap",
                           "price": 1
                         },
                         {
@@ -649,16 +666,6 @@
                       "max": 1,
                       "optionItems": [
                         {
-                          "name": "American",
-                          "description": "American",
-                          "price": 0
-                        },
-                        {
-                          "name": "Pepperjack",
-                          "description": "Pepperjack",
-                          "price": 0
-                        },
-                        {
                           "name": "Cheddar",
                           "description": "Cheddar",
                           "price": 0
@@ -671,6 +678,11 @@
                         {
                           "name": "Provolone",
                           "description": "Provolone",
+                          "price": 0
+                        },
+                        {
+                          "name": "Pepperjack",
+                          "description": "Pepperjack",
                           "price": 0
                         }
                       ]
@@ -899,7 +911,7 @@
                 {
                   "name": "JP's Ace",
                   "description": "An Angus beef hotdog topped with chili, coleslaw, mustard and diced red onions in a warmed roll. Solo or with a side.",
-                  "price": 4,
+                  "price": 6,
                   "options": [
                     {
                       "name": "Size",
@@ -909,12 +921,12 @@
                         {
                           "name": "Solo",
                           "description": "Solo",
-                          "price": 0
+                          "price": -2
                         },
                         {
                           "name": "With Side",
                           "description": "With Side",
-                          "price": 2
+                          "price": 0
                         }
                       ]
                     },
