@@ -1,0 +1,16 @@
+{
+  "clubs": [
+    {
+      "name": "Gates Four Golf & Country Club",
+      "address": "Fayetteville, NC", 
+      "restaurant": "JPs Bar and Grill",
+      "pdfMenuPath": "pdf_files/gatesFour.pdf"
+    },
+    {
+      "name": "Pine Valley Country Club",
+      "address": "Wilmington, NC",
+      "restaurant": "The Valley Grill",
+      "pdfMenuPath": "pdf_files/pineValley.pdf"
+    }
+  ]
+}

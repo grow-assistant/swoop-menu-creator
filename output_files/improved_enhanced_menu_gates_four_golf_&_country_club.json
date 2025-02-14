@@ -1,0 +1,1205 @@
+{
+  "locations": [
+    {
+      "name": "Gates Four Golf & Country Club",
+      "address": "Fayetteville, NC",
+      "menus": [
+        {
+          "name": "JPs Bar and Grill",
+          "categories": [
+            {
+              "name": "Appetizers",
+              "items": [
+                {
+                  "name": "Calamari",
+                  "description": "A mix of tentacles and rings, lightly coated and fried, served with a side of cocktail.",
+                  "price": 12
+                },
+                {
+                  "name": "Chicken Wings",
+                  "description": "Fried jumbo chicken wings, your choice of six or twelve, tossed in one of our signature sauces: Buffalo, BBQ, Blazing BBQ, Incinerator, Garlic Parm",
+                  "price": 7,
+                  "options": [
+                    {
+                      "name": "Wings Sauce",
+                      "min": 1,
+                      "max": 1,
+                      "optionItems": [
+                        {
+                          "name": "Buffalo",
+                          "description": "Buffalo",
+                          "price": 0
+                        },
+                        {
+                          "name": "BBQ",
+                          "description": "BBQ",
+                          "price": 0
+                        },
+                        {
+                          "name": "Blazing BBQ",
+                          "description": "Blazing BBQ",
+                          "price": 0
+                        },
+                        {
+                          "name": "Incinerator",
+                          "description": "Incinerator",
+                          "price": 0
+                        },
+                        {
+                          "name": "Garlic Parm",
+                          "description": "Garlic Parm",
+                          "price": 0
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Quantity",
+                      "min": 1,
+                      "max": 1,
+                      "optionItems": [
+                        {
+                          "name": "Six Wings",
+                          "description": "Six Wings",
+                          "price": 0
+                        },
+                        {
+                          "name": "Twelve Wings",
+                          "description": "Twelve Wings",
+                          "price": 5
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Club Nachos",
+                  "description": "Your choice of chicken or beef, atop warm corn tortilla chips with jalapenos, onions, and cheddar cheese.",
+                  "price": 12,
+                  "options": [
+                    {
+                      "name": "Meat Choice",
+                      "min": 1,
+                      "max": 1,
+                      "optionItems": [
+                        {
+                          "name": "Chicken",
+                          "description": "Chicken",
+                          "price": 0
+                        },
+                        {
+                          "name": "Beef",
+                          "description": "Beef",
+                          "price": 0
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Jalapenos",
+                          "description": "No Jalapenos",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Onions",
+                          "description": "No Onions",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Cheddar Cheese",
+                          "description": "No Cheddar Cheese",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Loaded Skins",
+                  "description": "Six halves, loaded down with cheddar cheese, bacon, and green onion with a side of sour cream.",
+                  "price": 10,
+                  "options": [
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Cheddar Cheese",
+                          "description": "No Cheddar Cheese",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Bacon",
+                          "description": "No Bacon",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Green Onion",
+                          "description": "No Green Onion",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Sour Cream",
+                          "description": "No Sour Cream",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Mozzarella Sticks",
+                  "description": "Six of our breaded mozzarella sticks, fried golden and served with marinara.",
+                  "price": 8
+                },
+                {
+                  "name": "Par Three Platter",
+                  "description": "A half portion of quesadilla, three mozzarella sticks, and six of our stuffed mushrooms, served with marinara, salsa, and Cajun aioli.",
+                  "price": 13
+                },
+                {
+                  "name": "BBQ Pork Quesadilla",
+                  "description": "A full 12' quesadilla stuffed with smoked pork, pepperjack, onions, and jalapenos.",
+                  "price": 12,
+                  "options": [
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Pepperjack",
+                          "description": "No Pepperjack",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Onions",
+                          "description": "No Onions",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Jalapenos",
+                          "description": "No Jalapenos",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Loaded Quesadilla",
+                  "description": "A full 12' quesadilla loaded with peppers, onions, and chicken. Served with salsa and sour cream.",
+                  "price": 11,
+                  "options": [
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Peppers",
+                          "description": "No Peppers",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Onions",
+                          "description": "No Onions",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Salsa",
+                          "description": "No Salsa",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Sour Cream",
+                          "description": "No Sour Cream",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Stuffed Mushrooms",
+                  "description": "A plate of our baked button mushrooms stuffed with our blend of seasonings and cream cheese.",
+                  "price": 8,
+                  "options": [
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Cream Cheese",
+                          "description": "No Cream Cheese",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Soup & Salad",
+              "items": [
+                {
+                  "name": "Soup of the Day",
+                  "description": "",
+                  "price": 4,
+                  "options": [
+                    {
+                      "name": "Size",
+                      "min": 1,
+                      "max": 1,
+                      "optionItems": [
+                        {
+                          "name": "Cup",
+                          "description": "Cup",
+                          "price": 0
+                        },
+                        {
+                          "name": "Bowl",
+                          "description": "Bowl",
+                          "price": 2
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Side House or Caesar Salad",
+                  "description": "",
+                  "price": 5
+                },
+                {
+                  "name": "House Salad",
+                  "description": "Fresh mixed greens with tomato, cucumber, mushrooms, onions and cheddar.",
+                  "price": 10,
+                  "options": [
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Tomato",
+                          "description": "No Tomato",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Cucumber",
+                          "description": "No Cucumber",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Mushrooms",
+                          "description": "No Mushrooms",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Onions",
+                          "description": "No Onions",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Cheddar",
+                          "description": "No Cheddar",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Caesar Salad",
+                  "description": "Chopped romaine tossed with parmesan, croutons, and Caesar dressing.",
+                  "price": 9,
+                  "options": [
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Parmesan",
+                          "description": "No Parmesan",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Croutons",
+                          "description": "No Croutons",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Caesar Dressing",
+                          "description": "No Caesar Dressing",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Club Salad",
+                  "description": "Fresh mixed greens with tomato, cucumber, mushrooms, onions, cheddar, smoked ham and turkey, and bacon.",
+                  "price": 13,
+                  "options": [
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Tomato",
+                          "description": "No Tomato",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Cucumber",
+                          "description": "No Cucumber",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Mushrooms",
+                          "description": "No Mushrooms",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Onions",
+                          "description": "No Onions",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Cheddar",
+                          "description": "No Cheddar",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Smoked Ham",
+                          "description": "No Smoked Ham",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Turkey",
+                          "description": "No Turkey",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Bacon",
+                          "description": "No Bacon",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Gates Four Spinach Salad",
+                  "description": "Baby leaf spinach tossed with candied nuts, craisins, bacon, onion, blue cheese crumbles and balsamic dressing.",
+                  "price": 14,
+                  "options": [
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Candied Nuts",
+                          "description": "No Candied Nuts",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Craisins",
+                          "description": "No Craisins",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Bacon",
+                          "description": "No Bacon",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Onion",
+                          "description": "No Onion",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Blue Cheese Crumbles",
+                          "description": "No Blue Cheese Crumbles",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Balsamic Dressing",
+                          "description": "No Balsamic Dressing",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Top any salad with:",
+                  "description": "",
+                  "price": 4,
+                  "options": [
+                    {
+                      "name": "Protein Choice",
+                      "min": 1,
+                      "max": 1,
+                      "optionItems": [
+                        {
+                          "name": "Grilled or Fried Chicken",
+                          "description": "Grilled or Fried Chicken",
+                          "price": 2
+                        },
+                        {
+                          "name": "6oz Salmon",
+                          "description": "6oz Salmon",
+                          "price": 6
+                        },
+                        {
+                          "name": "3 Grilled or Fried Shrimp",
+                          "description": "3 Grilled or Fried Shrimp",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Specialties",
+              "items": [
+                {
+                  "name": "Ahi Tuna Steak",
+                  "description": "A yellowfin tuna steak crusted with sesame and lightly seared and sliced. Served with your choice of side.",
+                  "price": 14
+                },
+                {
+                  "name": "Bang Bang Tempura",
+                  "description": "Eight, battered jumbo shrimp tossed in our sweet and sour sauce. Served with your choice of side.",
+                  "price": 15
+                },
+                {
+                  "name": "Fish and Chips",
+                  "description": "Two battered cod filets fried golden and served with an order of French fries and tartar sau\u0441\u0435.",
+                  "price": 16
+                },
+                {
+                  "name": "Chicken Fajitas",
+                  "description": "Two 6' flour tortillas with grilled fajita chicken, grilled peppers and onions and cotija cheese. Served with your choice of side.",
+                  "price": 14,
+                  "options": [
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Peppers",
+                          "description": "No Peppers",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Onions",
+                          "description": "No Onions",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Cotija Cheese",
+                          "description": "No Cotija Cheese",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Bacon Mac & Cheese",
+                  "description": "Penne pasta tossed in our home made bacon cheddar sauce.",
+                  "price": 9,
+                  "options": [
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Bacon",
+                          "description": "No Bacon",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Cheddar",
+                          "description": "No Cheddar",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Portobello Burger",
+                  "description": "A portobello mushroom cap seasoned and grilled, served on a seeded gluten free bun with lettuce and tomato. Served with your choice of side.",
+                  "price": 12,
+                  "options": [
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Lettuce",
+                          "description": "No Lettuce",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Tomato",
+                          "description": "No Tomato",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Sandwiches",
+              "items": [
+                {
+                  "name": "Irongate Deli",
+                  "description": "Your choice of sliced deli meat, bread or wrap, and cheese with lettuce, tomato, and onion. Served with your choice of side.",
+                  "price": 10,
+                  "options": [
+                    {
+                      "name": "Meat Choice",
+                      "min": 1,
+                      "max": 1,
+                      "optionItems": [
+                        {
+                          "name": "Ham",
+                          "description": "Ham",
+                          "price": 0
+                        },
+                        {
+                          "name": "Turkey",
+                          "description": "Turkey",
+                          "price": 0
+                        },
+                        {
+                          "name": "Capicola",
+                          "description": "Capicola",
+                          "price": 0
+                        },
+                        {
+                          "name": "Roast Beef",
+                          "description": "Roast Beef",
+                          "price": 0
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Bread/Wrap Choice",
+                      "min": 1,
+                      "max": 1,
+                      "optionItems": [
+                        {
+                          "name": "White Bread",
+                          "description": "White Bread",
+                          "price": 0
+                        },
+                        {
+                          "name": "Wheat Bread",
+                          "description": "Wheat Bread",
+                          "price": 0
+                        },
+                        {
+                          "name": "Flour Wrap",
+                          "description": "Flour Wrap",
+                          "price": 0
+                        },
+                        {
+                          "name": "Garlic Wrap",
+                          "description": "Garlic Wrap",
+                          "price": 0
+                        },
+                        {
+                          "name": "Gluten Free Wrap",
+                          "description": "Gluten Free Wrap (+$1)",
+                          "price": 1
+                        },
+                        {
+                          "name": "Rye Bread",
+                          "description": "Rye Bread",
+                          "price": 0
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Cheese Choice",
+                      "min": 1,
+                      "max": 1,
+                      "optionItems": [
+                        {
+                          "name": "American",
+                          "description": "American",
+                          "price": 0
+                        },
+                        {
+                          "name": "Pepperjack",
+                          "description": "Pepperjack",
+                          "price": 0
+                        },
+                        {
+                          "name": "Cheddar",
+                          "description": "Cheddar",
+                          "price": 0
+                        },
+                        {
+                          "name": "Swiss",
+                          "description": "Swiss",
+                          "price": 0
+                        },
+                        {
+                          "name": "Provolone",
+                          "description": "Provolone",
+                          "price": 0
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Lettuce",
+                          "description": "No Lettuce",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Tomato",
+                          "description": "No Tomato",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Onion",
+                          "description": "No Onion",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Blackened Salmon Sandwich",
+                  "description": "A filet of north Atlantic caught salmon seared and topped with lettuce and tomato on a potato bun. Served with your choice of side.",
+                  "price": 18,
+                  "options": [
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Lettuce",
+                          "description": "No Lettuce",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Tomato",
+                          "description": "No Tomato",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "JP's Club Sandwich",
+                  "description": "Black forest ham, roasted turkey, and smoked bacon with Swiss and cheddar cheeses, crisp leaf lettuce, tomato and mayo on three slices of your choice of bread. Served with your choice of side.",
+                  "price": 14,
+                  "options": [
+                    {
+                      "name": "Bread Choice",
+                      "min": 1,
+                      "max": 1,
+                      "optionItems": [
+                        {
+                          "name": "White Bread",
+                          "description": "White Bread",
+                          "price": 0
+                        },
+                        {
+                          "name": "Wheat Bread",
+                          "description": "Wheat Bread",
+                          "price": 0
+                        },
+                        {
+                          "name": "Rye Bread",
+                          "description": "Rye Bread",
+                          "price": 0
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Lettuce",
+                          "description": "No Lettuce",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Tomato",
+                          "description": "No Tomato",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Mayo",
+                          "description": "No Mayo",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Swiss Cheese",
+                          "description": "No Swiss Cheese",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Cheddar Cheese",
+                          "description": "No Cheddar Cheese",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Black Forest Ham",
+                          "description": "No Black Forest Ham",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Roasted Turkey",
+                          "description": "No Roasted Turkey",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Smoked Bacon",
+                          "description": "No Smoked Bacon",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Philly Cheesesteak",
+                  "description": "Sliced roasted steak with peppers, onions, and mushrooms, topped with provolone cheese in a footlong hoagie roll. Served with your choice of side.",
+                  "price": 16,
+                  "options": [
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Peppers",
+                          "description": "No Peppers",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Onions",
+                          "description": "No Onions",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Mushrooms",
+                          "description": "No Mushrooms",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Provolone Cheese",
+                          "description": "No Provolone Cheese",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "The Italian",
+                  "description": "Ham, capicola, and pepperoni with lettuce, oil and vinegar, and banana peppers in a footlong hoagie roll. Served with your choice of side.",
+                  "price": 15,
+                  "options": [
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Lettuce",
+                          "description": "No Lettuce",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Banana Peppers",
+                          "description": "No Banana Peppers",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Buffalo Chicken Sandwich",
+                  "description": "A fried 8oz chicken breast, tossed in buffalo sauce, topped with pepperjack cheese, bacon, leaf lettuce and tomato on a potato bun. Served with your choice of side.",
+                  "price": 17,
+                  "options": [
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Lettuce",
+                          "description": "No Lettuce",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Tomato",
+                          "description": "No Tomato",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Bacon",
+                          "description": "No Bacon",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Buffalo Sauce",
+                          "description": "No Buffalo Sauce",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Pepperjack Cheese",
+                          "description": "No Pepperjack Cheese",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "JP's Ace",
+                  "description": "An Angus beef hotdog topped with chili, coleslaw, mustard and diced red onions in a warmed roll. Solo or with a side.",
+                  "price": 4,
+                  "options": [
+                    {
+                      "name": "Size",
+                      "min": 1,
+                      "max": 1,
+                      "optionItems": [
+                        {
+                          "name": "Solo",
+                          "description": "Solo",
+                          "price": 0
+                        },
+                        {
+                          "name": "With Side",
+                          "description": "With Side",
+                          "price": 2
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Chili",
+                          "description": "No Chili",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Coleslaw",
+                          "description": "No Coleslaw",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Mustard",
+                          "description": "No Mustard",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Diced Red Onions",
+                          "description": "No Diced Red Onions",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Burgers",
+              "items": [
+                {
+                  "name": "Gates Four Burger",
+                  "description": "A half pound hamburger grilled with American, lettuce, onion, and tomato. Served with your choice of side.",
+                  "price": 14,
+                  "options": [
+                    {
+                      "name": "Meat Temperature",
+                      "min": 1,
+                      "max": 1,
+                      "optionItems": [
+                        {
+                          "name": "Rare",
+                          "description": "Rare",
+                          "price": 0
+                        },
+                        {
+                          "name": "Medium Rare",
+                          "description": "Medium Rare",
+                          "price": 0
+                        },
+                        {
+                          "name": "Medium",
+                          "description": "Medium",
+                          "price": 0
+                        },
+                        {
+                          "name": "Medium Well",
+                          "description": "Medium Well",
+                          "price": 0
+                        },
+                        {
+                          "name": "Well Done",
+                          "description": "Well Done",
+                          "price": 0
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Lettuce",
+                          "description": "No Lettuce",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Onion",
+                          "description": "No Onion",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Tomato",
+                          "description": "No Tomato",
+                          "price": 0
+                        },
+                        {
+                          "name": "No American Cheese",
+                          "description": "No American Cheese",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Big Sky Burger",
+                  "description": "Our half pound burger grilled with barbecue sauce, applewood smoked bacon, cheddar cheese, and crispy fried onions. Served with your choice of side.",
+                  "price": 15,
+                  "options": [
+                    {
+                      "name": "Meat Temperature",
+                      "min": 1,
+                      "max": 1,
+                      "optionItems": [
+                        {
+                          "name": "Rare",
+                          "description": "Rare",
+                          "price": 0
+                        },
+                        {
+                          "name": "Medium Rare",
+                          "description": "Medium Rare",
+                          "price": 0
+                        },
+                        {
+                          "name": "Medium",
+                          "description": "Medium",
+                          "price": 0
+                        },
+                        {
+                          "name": "Medium Well",
+                          "description": "Medium Well",
+                          "price": 0
+                        },
+                        {
+                          "name": "Well Done",
+                          "description": "Well Done",
+                          "price": 0
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Barbecue Sauce",
+                          "description": "No Barbecue Sauce",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Applewood Smoked Bacon",
+                          "description": "No Applewood Smoked Bacon",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Cheddar Cheese",
+                          "description": "No Cheddar Cheese",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Crispy Fried Onions",
+                          "description": "No Crispy Fried Onions",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Carolina Burger",
+                  "description": "Our half pound burger grilled with chili, American cheese, coleslaw, mustard, and onions. Served with your choice of sides.",
+                  "price": 15,
+                  "options": [
+                    {
+                      "name": "Meat Temperature",
+                      "min": 1,
+                      "max": 1,
+                      "optionItems": [
+                        {
+                          "name": "Rare",
+                          "description": "Rare",
+                          "price": 0
+                        },
+                        {
+                          "name": "Medium Rare",
+                          "description": "Medium Rare",
+                          "price": 0
+                        },
+                        {
+                          "name": "Medium",
+                          "description": "Medium",
+                          "price": 0
+                        },
+                        {
+                          "name": "Medium Well",
+                          "description": "Medium Well",
+                          "price": 0
+                        },
+                        {
+                          "name": "Well Done",
+                          "description": "Well Done",
+                          "price": 0
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Chili",
+                          "description": "No Chili",
+                          "price": 0
+                        },
+                        {
+                          "name": "No American Cheese",
+                          "description": "No American Cheese",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Coleslaw",
+                          "description": "No Coleslaw",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Mustard",
+                          "description": "No Mustard",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Onions",
+                          "description": "No Onions",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Lunch Sides",
+              "items": [
+                {
+                  "name": "French Fries",
+                  "description": "",
+                  "price": 2
+                },
+                {
+                  "name": "Sweet Potato Fries",
+                  "description": "",
+                  "price": 3
+                },
+                {
+                  "name": "Onion Rings",
+                  "description": "",
+                  "price": 2
+                },
+                {
+                  "name": "Pasta Salad",
+                  "description": "",
+                  "price": 3
+                },
+                {
+                  "name": "Potato Salad",
+                  "description": "",
+                  "price": 3
+                },
+                {
+                  "name": "Fruit",
+                  "description": "",
+                  "price": 3
+                },
+                {
+                  "name": "Homemade Chips",
+                  "description": "",
+                  "price": 3
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
