@@ -4,6 +4,7 @@ import google.generativeai as genai
 from dotenv import load_dotenv
 import logging
 import time
+from typing import Union, List, Dict, Optional
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -24,7 +25,7 @@ def extract_ingredients(description: str) -> list[str]:
     ]
     return [ingredient for ingredient in common_ingredients if ingredient in description.lower()]
 
-def generate_remove_options(description: str, required_choices: list[str] | None = None) -> list[dict]:
+def generate_remove_options(description: str, required_choices: Optional[List[str]] = None) -> List[Dict]:
     """Generate Remove Options from item description, excluding required choices."""
     if required_choices is None:
         required_choices = []
