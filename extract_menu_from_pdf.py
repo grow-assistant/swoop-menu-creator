@@ -1,6 +1,7 @@
 from google import genai
 from pydantic import BaseModel, Field, PydanticUserError
 import os
+import json
 from dotenv import load_dotenv
 import logging
 
@@ -11,7 +12,7 @@ api_key = os.getenv("GOOGLE_GEMINI_API") # If you are not using Colab you can se
 client = genai.Client(api_key=api_key)
 
 # Define the model you are going to use
-model_id =  "gemini-2.0-flash" # or "gemini-2.0-flash-lite-preview-02-05"  , "gemini-2.0-pro-exp-02-05"
+model_id = "gemini-2.0-flash"
      
 #Gemini models are able to process images and videos, which can used with base64 strings or using the files api.
 #The Python API includes a upload and delete method.
@@ -38,8 +39,18 @@ def extract_structured_data(file_path: str, model: BaseModel):
         "} }"
     )
     response = client.models.generate_content(model=model_id, contents=[prompt, file], config={'response_mime_type': 'application/json', 'response_schema': model})
-    # Convert the response to the pydantic model and return it
-    return response.parsed
+    
+    # Handle the response
+    if response.text:
+        try:
+            json_data = json.loads(response.text)
+            return model.model_validate(json_data)
+        except (json.JSONDecodeError, PydanticUserError) as e:
+            logging.error(f"Failed to parse response: {e}")
+            raise
+    else:
+        logging.error("No response text received from Gemini API")
+        raise RuntimeError("No response text received from Gemini API")
 
 class MenuItemOption(BaseModel):
     name: str = Field(description="The name of the menu item option")
@@ -89,4 +100,3 @@ with open(output_file_path, "w", encoding="utf-8") as output_file:
     output_file.write(result.model_dump_json())
 
 print(f"Extracted Menu saved to: {output_file_path}")
-

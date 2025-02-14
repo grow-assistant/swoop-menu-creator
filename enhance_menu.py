@@ -1,9 +1,10 @@
 import os
 import json
-from google import genai
+import google.generativeai as genai
 from dotenv import load_dotenv
 import logging
 import time
+from typing import Union, List, Dict, Optional
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -11,151 +12,237 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 # Load API key from .env file
 load_dotenv('.env')
 api_key = os.getenv("GOOGLE_GEMINI_API")
-client = genai.Client(api_key=api_key)
 
-# Select your Gemini model
-model_id = "gemini-2.0-flash"
+# Configure the model
+genai.configure(api_key=api_key)
+model = genai.GenerativeModel("gemini-2.0-flash")
 
-# Retrieve the club name from environment variable
-club_name = os.getenv("CLUB_NAME", "gatesFour").replace(" ", "_").lower()
+def extract_ingredients(description: str) -> list[str]:
+    """Extract ingredients from item description for generating remove options."""
+    common_ingredients = [
+        "lettuce", "tomato", "onion", "cheese", "bacon", "ham", "turkey", "chicken",
+        "beef", "mushroom", "pepper", "jalapeno", "mayo", "mustard", "sauce"
+    ]
+    return [ingredient for ingredient in common_ingredients if ingredient in description.lower()]
 
-# Load the original menu JSON from file using the club-specific filename
-input_file_path = os.path.join("output_files", f"extracted_menu_{club_name}.json")
-with open(input_file_path, "r", encoding="utf-8") as infile:
-    original_menu = infile.read()
-
-# Define the detailed target structure (as before, truncated for brevity)
-detailed_structure = r"""
-{
-  "locations": [
-    {
-      "name": "Gates Four Golf & Country Club",
-      "address": "Fayetteville, NC",
-      "menus": [
-        {
-          "name": "JPs Bar and Grill",
-          "categories": [
-            {
-              "name": "Appetizers",
-              "items": [
-                {
-                  "name": "Calamari",
-                  "description": "A mix of tentacles and rings, lightly coated and fried, served with a side of cocktail.",
-                  "price": 12
-                },
-                {
-                  "name": "Chicken Wings",
-                  "description": "Fried jumbo chicken wings, your choice of six or twelve, tossed in one of our signature sauces: Buffalo, BBQ, Blazing BBQ, Incinerator, Garlic Parm.",
-                  "price": 7,
-                  "options": [
-                    {
-                      "name": "Wings Sauce",
-                      "min": 1,
-                      "max": 1,
-                      "optionItems": [
-                        { "name": "Buffalo", "description": "Buffalo", "price": 0 },
-                        { "name": "BBQ", "description": "BBQ", "price": 0 },
-                        { "name": "Blazing BBQ", "description": "Blazing BBQ", "price": 0 },
-                        { "name": "Incinerator", "description": "Incinerator", "price": 0 },
-                        { "name": "Garlic Parm", "description": "Garlic Parm", "price": 0 }
-                      ]
-                    },
-                    {
-                      "name": "Wings Dipping Sauce",
-                      "min": 1,
-                      "max": 1,
-                      "optionItems": [
-                        { "name": "Ranch", "description": "Ranch", "price": 0 },
-                        { "name": "Blue Cheese", "description": "Blue Cheese", "price": 0 }
-                      ]
-                    },
-                    {
-                      "name": "Options",
-                      "min": 1,
-                      "max": 1,
-                      "optionItems": [
-                        { "name": "Six Wings", "description": "Six Wings", "price": 0 },
-                        { "name": "Twelve Wings", "description": "Twelve Wings", "price": 5 }
-                      ]
-                    }
-                  ]
-                }
-                // ... (additional items and categories)
-              ]
-            }
-            // ... (other categories, menus, and locations)
-          ]
-        }
-      ]
+def generate_remove_options(description: str, required_choices: Optional[List[str]] = None) -> List[Dict]:
+    """Generate Remove Options from item description, excluding required choices."""
+    if required_choices is None:
+        required_choices = []
+    
+    ingredients = extract_ingredients(description)
+    remove_options = []
+    
+    # Group ingredients by type for ordering
+    ingredient_groups = {
+        'proteins': ['bacon', 'ham', 'turkey', 'chicken', 'beef'],
+        'dairy': ['cheese', 'american', 'cheddar', 'swiss', 'provolone', 'pepperjack'],
+        'vegetables': ['lettuce', 'tomato', 'onion', 'mushroom', 'pepper', 'jalapeno'],
+        'condiments': ['mayo', 'mustard', 'sauce']
     }
-  ]
-}
-"""
+    
+    # Sort ingredients by group
+    for group in ['proteins', 'dairy', 'vegetables', 'condiments']:
+        for ingredient in ingredient_groups[group]:
+            if ingredient in ingredients and ingredient not in required_choices:
+                name = ingredient.capitalize()
+                remove_options.append({
+                    "name": f"No {name}",
+                    "description": f"No {name}",
+                    "price": 0
+                })
+    
+    return remove_options
 
-# Construct the Gemini prompt with improved instructions for an accurate output
-prompt = (
-    "Transform the following extracted menu JSON into a detailed menu structure that exactly matches the target JSON structure provided below.\n\n"
-    "Target Menu JSON Structure (must match exactly, including all keys, nesting, and data types):\n"
-    f"{detailed_structure}\n\n"
-    "Extracted Menu JSON:\n"
-    f"{original_menu}\n\n"
-    "For each menu item, analyze the description and perform the following actions:\n"
-    "1. If the item specifies a required choice (such as a choice of meat, bread, or other toppings), add a corresponding options block (e.g. 'Choice of Meat', 'Choice of Bread', or 'Add Options') that lists all valid alternatives with their option items.\n"
-    "2. If the item permits ingredient removals, add a 'Remove Options' block containing common removals (such as 'No Tomatoes', 'No Onions', 'No Lettuce', 'No Mushrooms', etc.) based on the ingredients mentioned. The 'Remove Options' block should always have min=0 and max=0 to indicate these are optional removals.\n"
-    "3. Ensure there is no overlap between the options provided for adding ingredients and those provided for removals. In other words, an ingredient should not appear in both the add and the remove options for the same item.\n"
-    "4. If the item includes meat that typically requires a temperature specification (for example, hamburgers, steaks, or other meat-based items), include a 'Meat Temperature' or 'Cooking Preference' options block listing common cooking instructions (such as Well Done, Medium, Medium-Rare, and Rare). Ensure these options remain distinct from any removal options.\n"
-    "5. Additionally, for items that require a complete set of option choices (for example, sandwiches like 'Irongate Deli' or 'JP's Club Sandwich'), include the following option blocks exactly as shown in the target structure:\n"
-    "   - For sandwiches, add a 'Meat Choice' block (e.g. with options 'Ham', 'Turkey', 'Roast Beef'), a 'Bread/Wrap Choice' block (e.g. 'White Bread', 'Wheat Bread', 'Wrap' or 'Rye Bread'), and a 'Cheese Choice' block (e.g. 'Cheddar', 'Swiss', 'Provolone').\n"
-    "   - For burgers, ensure that a 'Meat Temperature' block is included with options 'Rare', 'Medium Rare', 'Medium', 'Medium Well', and 'Well Done'.\n"
-    "   - Ensure that no ingredient appears in both an addition options block and a removal options block.\n\n"
-    "6. Make the transformation dynamic. Since the extracted menus can be of various types (e.g. breakfast, beverages, lunch, dinner, etc.), analyze each menu item's description and include only the applicable option blocks. For example, if an item is a beverage or a breakfast item, include only relevant options (like 'Size' or 'Add-ons') and omit blocks that are not applicable. Do not add empty or extraneous option blocks if they are not needed.\n\n"
-    "Return only valid JSON that fully conforms to the target structure, without any extra text or formatting."
-)
+def enhance_menu_item(item: dict) -> dict:
+    """Enhance a single menu item with proper options."""
+    enhanced_item = item.copy()
+    enhanced_item["options"] = []
+    
+    # Define standard option order
+    option_order = [
+        "Meat Temperature",  # Must come first for burgers
+        "Choice of Side",    # Second for items with sides
+        "Choice of Meat",    # Third for deli items
+        "Choice of Bread",   # Fourth for deli items
+        "Choice of Cheese",  # Fifth for deli items
+        "Wings Sauce",       # For wings
+        "Wings Dipping Sauce", # For wings
+        "Salad Dressing",    # For salads
+        "Extras",           # For salads
+        "Remove Options"     # Always last
+    ]
+    
+    # Determine required options based on item type and description
+    required_options = []
+    
+    # Define items that need specific options
+    item_name = item["name"].lower().strip()
+    
+    # Items that need Choice of Side
+    side_items = {
+        "ahi tuna steak", "bang bang tempura", "chicken fajitas", "✓ portobello burger",
+        "irongate deli", "philly cheesesteak", "the italian", "*blackened salmon sandwich",
+        "jp's club sandwich", "buffalo chicken sandwich", "*gates four burger",
+        "*big sky burger", "*carolina burger", "jp's ace"
+    }
+    
+    # Items that need Meat Temperature
+    temp_items = {
+        "*gates four burger", "*big sky burger", "*carolina burger"
+    }
+    
+    # Items that need specific options
+    if item_name in side_items:
+        required_options.append("Choice of Side")
+    
+    if item_name in temp_items or "✓ portobello burger" in item_name:
+        required_options.append("Meat Temperature")
+    
+    # Check for specific items
+    if "irongate deli" in item_name:
+        required_options.extend(["Choice of Meat", "Choice of Bread", "Choice of Cheese"])
+    
+    if "chicken wings" in item_name:
+        required_options.extend(["Wings Sauce", "Wings Dipping Sauce"])
+    
+    if "salad" in item_name:
+        required_options.append("Salad Dressing")
+        required_options.append("Salad Dressing")
+    
+    # Add options in standard order
+    for option_type in option_order:
+        if option_type in required_options:
+            # Get min/max values based on option type and item
+            min_val = 0 if option_type == "Remove Options" or (option_type == "Choice of Side" and "jp's ace" in item["name"].lower()) else 1
+            max_val = 0 if option_type == "Remove Options" or (option_type == "Choice of Side" and "jp's ace" in item["name"].lower()) else 1
+            
+            option_items = get_standard_options(option_type, item["name"])
+            if option_items:
+                enhanced_item["options"].append({
+                    "name": option_type,
+                    "min": min_val,
+                    "max": max_val,
+                    "optionItems": option_items
+                })
+    
+    # Add Remove Options last
+    remove_options = generate_remove_options(item["description"])
+    if remove_options:
+        enhanced_item["options"].append({
+            "name": "Remove Options",
+            "min": 0,
+            "max": 0,
+            "optionItems": remove_options
+        })
+    
+    return enhanced_item
 
-# Function to generate content with retry logic
-def generate_content_with_retry(prompt, max_retries=3, retry_delay=5):
-    for attempt in range(max_retries):
-        try:
-            response = client.models.generate_content(
-                model=model_id,
-                contents=[prompt],
-                config={'response_mime_type': 'application/json'}
-            )
+def get_standard_options(option_type: str, item_name: str = "") -> list[dict]:
+    """Get standardized option items for common option types."""
+    options = {
+        "Wings Sauce": [
+            {"name": "Buffalo", "description": "Buffalo", "price": 0},
+            {"name": "BBQ", "description": "BBQ", "price": 0},
+            {"name": "Blazing BBQ", "description": "Blazing BBQ", "price": 0},
+            {"name": "Incinerator", "description": "Incinerator", "price": 0},
+            {"name": "Garlic Parm", "description": "Garlic Parm", "price": 0}
+        ],
+        "Wings Dipping Sauce": [
+            {"name": "Ranch", "description": "Ranch", "price": 0},
+            {"name": "Blue Cheese", "description": "Blue Cheese", "price": 0}
+        ],
+        "Salad Dressing": [
+            {"name": "Balsalmic", "description": "Balsalmic", "price": 0},
+            {"name": "Caesar", "description": "Caesar", "price": 0},
+            {"name": "Ranch", "description": "Ranch", "price": 0},
+            {"name": "Bleu Cheese", "description": "Bleu Cheese", "price": 0},
+            {"name": "Honey Mustard", "description": "Honey Mustard", "price": 0},
+            {"name": "Italian", "description": "Italian", "price": 0},
+            {"name": "Thousand Island", "description": "Thousand Island", "price": 0},
+            {"name": "Balsalmic Vinaigrette", "description": "Balsalmic Vinaigrette", "price": 0}
+        ],
+        "Choice of Meat": [
+            {"name": "Ham", "description": "Ham", "price": 0},
+            {"name": "Turkey", "description": "Turkey", "price": 0},
+            {"name": "Roast Beef", "description": "Roast Beef", "price": 0},
+            {"name": "Capicola", "description": "Capicola", "price": 0}
+        ],
+        "Choice of Bread": [
+            {"name": "White", "description": "White", "price": 0},
+            {"name": "Wheat", "description": "Wheat", "price": 0},
+            {"name": "Flour Wrap", "description": "Flour Wrap", "price": 0},
+            {"name": "Garlic Wrap", "description": "Garlic Wrap", "price": 0},
+            {"name": "Gluten Free Wrap", "description": "Gluten Free Wrap", "price": 1}
+        ],
+        "Choice of Cheese": [
+            {"name": "American", "description": "American", "price": 0},
+            {"name": "Cheddar", "description": "Cheddar", "price": 0},
+            {"name": "Swiss", "description": "Swiss", "price": 0},
+            {"name": "Provolone", "description": "Provolone", "price": 0},
+            {"name": "Pepperjack", "description": "Pepperjack", "price": 0},
+            {"name": "No Cheese", "description": "No Cheese", "price": 0}
+        ],
+        "Choice of Side": [
+            {"name": "French Fries", "description": "French Fries", "price": 2 if "jp's ace" in item_name.lower() else 0},
+            {"name": "Sweet Potato Fries", "description": "Sweet Potato Fries", "price": 2 if "jp's ace" in item_name.lower() else 0},
+            {"name": "Onion Rings", "description": "Onion Rings", "price": 2 if "jp's ace" in item_name.lower() else 0},
+            {"name": "Fruit", "description": "Fruit", "price": 2 if "jp's ace" in item_name.lower() else 0},
+            {"name": "Homemade Chips", "description": "Homemade Chips", "price": 2 if "jp's ace" in item_name.lower() else 0},
+            {"name": "Pasta Salad", "description": "Pasta Salad", "price": 2 if "jp's ace" in item_name.lower() else 0},
+            {"name": "Potato Salad", "description": "Potato Salad", "price": 2 if "jp's ace" in item_name.lower() else 0}
+        ],
+        "Meat Temperature": [
+            {"name": "Well Done", "description": "Well Done", "price": 0},
+            {"name": "Medium-Well", "description": "Medium-Well", "price": 0},
+            {"name": "Medium", "description": "Medium", "price": 0},
+            {"name": "Medium-Rare", "description": "Medium-Rare", "price": 0},
+            {"name": "Rare", "description": "Rare", "price": 0}
+        ]
+    }
+    return options.get(option_type, [])
 
-            if response.parsed:
-                return response.parsed
-
-            # Fallback to text parsing if .parsed fails
-            if response.text:
-                try:
-                    return json.loads(response.text)
-                except json.JSONDecodeError as e:
-                    logging.warning(f"Attempt {attempt + 1}: Failed to parse response.text as JSON: {e}")
-
-            logging.warning(f"Attempt {attempt + 1}: No valid response received.")
-
-        except Exception as e:
-            logging.error(f"Attempt {attempt + 1}: An unexpected error occurred: {e}")
-
-        if attempt < max_retries - 1:
-            logging.info(f"Retrying in {retry_delay} seconds...")
-            time.sleep(retry_delay)
-
-    logging.error("Max retries reached. Failed to generate content.")
-    return None
-
-# Generate enhanced menu JSON
-enhanced_menu = generate_content_with_retry(prompt)
-
-
-# Save the enhanced menu JSON
-output_directory = "output_files"
-os.makedirs(output_directory, exist_ok=True)
-output_file_path = os.path.join(output_directory, f"enhanced_menu_{club_name}.json")
-
-if enhanced_menu:
+def enhance_menu():
+    """Enhance the menu with proper options and structure."""
+    # Load the original menu
+    club_name = os.getenv("CLUB_NAME", "gatesFour").replace(" ", "_").lower()
+    input_file_path = os.path.join("output_files", f"extracted_menu_{club_name}.json")
+    
+    with open(input_file_path, "r", encoding="utf-8") as infile:
+        menu_data = json.load(infile)
+    
+    # Create enhanced menu structure
+    enhanced_menu = {
+        "locations": [{
+            "name": "Gates Four Golf & Country Club",
+            "address": "Fayetteville, NC",
+            "menus": [{
+                "name": "JPs Bar and Grill",
+                "categories": []
+            }]
+        }]
+    }
+    
+    # Process each category
+    for category in menu_data["menu"]["categories"]:
+        enhanced_category = {
+            "name": category["name"],
+            "items": []
+        }
+        
+        # Process each item
+        for item in category["items"]:
+            enhanced_item = enhance_menu_item(item)
+            enhanced_category["items"].append(enhanced_item)
+        
+        enhanced_menu["locations"][0]["menus"][0]["categories"].append(enhanced_category)
+    
+    # Save enhanced menu
+    output_file_path = os.path.join("output_files", f"enhanced_menu_{club_name}.json")
     with open(output_file_path, "w", encoding="utf-8") as outfile:
         json.dump(enhanced_menu, outfile, indent=2)
+    
     print(f"Enhanced Menu saved to: {output_file_path}")
-else:
-    print("Failed to generate enhanced menu.")
+
+if __name__ == "__main__":
+    enhance_menu()
