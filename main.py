@@ -23,16 +23,9 @@ def main():
     for idx, club in enumerate(clubs, 1):
         print(f"{idx}. {club['name']} - {club['address']} ({club['restaurant']})")
     
-    # Prompt user for selection
-    choice = input("Enter the number of the club to process: ")
-    try:
-        choice_index = int(choice) - 1
-        if choice_index < 0 or choice_index >= len(clubs):
-            print("Invalid choice.")
-            sys.exit(1)
-    except ValueError:
-        print("Invalid input. Please enter a valid number.")
-        sys.exit(1)
+    # Automatically select Gates Four (index 0)
+    choice_index = 0
+    print("Automatically selecting Gates Four Golf & Country Club")
     
     selected_club = clubs[choice_index]
     pdf_path = selected_club["pdfMenuPath"]
@@ -119,4 +112,4 @@ def main():
     print("Process completed successfully.")
 
 if __name__ == "__main__":
-    main() 
+    main()   
