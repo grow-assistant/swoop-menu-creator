@@ -209,7 +209,7 @@ def create_go_seed_file(menu_data, club_name: str, club_address: str):
                             opt_items = get_standard_options(opt_type)
                             if opt_items:
                                 go_code.append(f'\t// Add {opt_type}')
-                                go_code.append(f'\t_ = api.CreateOption("{opt_type}", "{opt_type}", {min_val}, {max_val}, {full_item_var}.ID, []locations.OptionItem{{')
+                                go_code.append(f'\t_ = api.CreateOption("{opt_type}", "{opt_type}", {min_val}, {max_val}, {item_var}.ID, []locations.OptionItem{{')
                                 for opt_item in opt_items:
                                     go_code.append(f'\t\tlocations.OptionItem{{Name: "{opt_item["name"]}", Description: "{opt_item["name"]}", Price: {opt_item["price"]}}},')
                                 go_code.append('\t})\n')
@@ -219,7 +219,7 @@ def create_go_seed_file(menu_data, club_name: str, club_address: str):
                         if option.name not in standard_options:
                             min_val, max_val = get_option_min_max(option.name, item.name)
                             go_code.append(f'\t// Add option')
-                            go_code.append(f'\t_ = api.CreateOption("{option.name}", "{option.name}", {min_val}, {max_val}, {full_item_var}.ID, []locations.OptionItem{{')
+                            go_code.append(f'\t_ = api.CreateOption("{option.name}", "{option.name}", {min_val}, {max_val}, {item_var}.ID, []locations.OptionItem{{')
                             for opt_item in option.option_items:
                                 go_code.append(f'\t\tlocations.OptionItem{{Name: "{opt_item.name}", Description: "{opt_item.name}", Price: {opt_item.price}}},')
                             go_code.append('\t})\n')
