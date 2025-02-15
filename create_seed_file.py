@@ -64,6 +64,43 @@ def get_standard_options(option_type: str) -> list[dict]:
     }
     return options.get(option_type, [])
 
+def has_item_options(item_name: str, item_options: list, item_description: str = "") -> bool:
+    """Determine if an item needs options based on its name, existing options, and description."""
+    # Terminal items never have options
+    item_name_lower = item_name.lower()
+    if any([
+        "side" in item_name_lower,
+        "calamari" in item_name_lower,
+        "mozzarella sticks" in item_name_lower,
+        "par three platter" in item_name_lower,
+        "fish and chips" in item_name_lower,
+        "bacon mac" in item_name_lower
+    ]):
+        return False
+        
+    # Check for existing options
+    if len(item_options) > 0:
+        return True
+    
+    # Check for items that should have options based on description
+    if any([
+        "choice of side" in item_description.lower(),
+        "served with your choice of side" in item_description.lower()
+    ]):
+        return True
+    
+    # Check item type
+    return any([
+        "burger" in item_name_lower,
+        ("steak" in item_name_lower and "tuna" not in item_name_lower),
+        ("sandwich" in item_name_lower and "side" not in item_name_lower),
+        "deli" in item_name_lower,
+        "wings" in item_name_lower,
+        ("salad" in item_name_lower and "side" not in item_name_lower 
+         and "potato" not in item_name_lower and "pasta" not in item_name_lower),
+        "fajitas" in item_name_lower
+    ])
+
 def get_option_min_max(option_name: str, item_name: str = "") -> tuple[int, int]:
     """Get min/max values for option types."""
     # Remove Options are always optional
@@ -135,10 +172,18 @@ def create_go_seed_file(menu_data, club_name: str, club_address: str):
                 
                 # Process items
                 for item in category.items:
-                    item_var = sanitize_name_var(item.name)
-                    full_item_var = f"{full_category_var}{item_var}"
+                    # Check if item has options
+                    has_options = has_item_options(item.name, item.options, item.description)
+                    
+                    # Use _ assignment for terminal items (no options)
                     go_code.append(f'\t// Seed item')
-                    go_code.append(f'\t{full_item_var} := api.CreateItem("{item.name}", "{item.description}", {item.price}, {full_category_var}.ID)\n')
+                    if has_options:
+                        # Generate unique ID by including full path
+                        item_var = sanitize_name_var(item.name, f"{location_var}{menu_var}{category_var}")
+                        go_code.append(f'\t{item_var} := api.CreateItem("{item.name}", "{item.description}", {item.price}, {full_category_var}.ID)\n')
+                    else:
+                        # Terminal items use _ assignment
+                        go_code.append(f'\t_ = api.CreateItem("{item.name}", "{item.description}", {item.price}, {full_category_var}.ID)\n')
                     
                     # Process options in standard order
                     option_order = ["Meat Temperature", "Choice of Side", "Choice of Meat", 
@@ -195,6 +240,11 @@ def sanitize_location_var(name: str) -> str:
     """Convert location name to a valid Go variable name."""
     return "".join(x for x in name.title().replace(" ", "") if x.isalnum())
 
-def sanitize_name_var(name: str) -> str:
-    """Convert menu/category/item name to a valid Go variable name."""
-    return "".join(x for x in name.title().replace(" ", "") if x.isalnum())
+def sanitize_name_var(name: str, prefix: str = "") -> str:
+    """Convert menu/category/item name to a valid Go variable name.
+    Args:
+        name: The name to sanitize
+        prefix: Optional prefix to ensure uniqueness across menu levels
+    """
+    sanitized = "".join(x for x in name.title().replace(" ", "") if x.isalnum())
+    return f"{prefix}{sanitized}" if prefix else sanitized
