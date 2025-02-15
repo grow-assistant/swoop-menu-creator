@@ -276,86 +276,6 @@
                   "options": []
                 },
                 {
-                  "name": "Bang Bang Tempura",
-                  "description": "Eight, battered jumbo shrimp tossed in our sweet and sour sauce. Served with your choice of side.",
-                  "price": 15.0,
-                  "options": [
-                    {
-                      "name": "Choice of Side",
-                      "min": 1,
-                      "max": 1,
-                      "optionItems": [
-                        {
-                          "name": "French Fries",
-                          "description": "French Fries",
-                          "price": 0
-                        },
-                        {
-                          "name": "Sweet Potato Fries",
-                          "description": "Sweet Potato Fries",
-                          "price": 0
-                        },
-                        {
-                          "name": "Onion Rings",
-                          "description": "Onion Rings",
-                          "price": 0
-                        },
-                        {
-                          "name": "Fruit",
-                          "description": "Fruit",
-                          "price": 0
-                        },
-                        {
-                          "name": "Homemade Chips",
-                          "description": "Homemade Chips",
-                          "price": 0
-                        },
-                        {
-                          "name": "Pasta Salad",
-                          "description": "Pasta Salad",
-                          "price": 0
-                        },
-                        {
-                          "name": "Potato Salad",
-                          "description": "Potato Salad",
-                          "price": 0
-                        }
-                      ]
-                    },
-                    {
-                      "name": "Remove Options",
-                      "min": 0,
-                      "max": 0,
-                      "optionItems": [
-                        {
-                          "name": "No Sauce",
-                          "description": "No Sauce",
-                          "price": 0
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "name": "Fish and Chips",
-                  "description": "Two battered cod filets fried golden and served with an order of French fries and tartar sauce.",
-                  "price": 16.0,
-                  "options": [
-                    {
-                      "name": "Remove Options",
-                      "min": 0,
-                      "max": 0,
-                      "optionItems": [
-                        {
-                          "name": "No Sauce",
-                          "description": "No Sauce",
-                          "price": 0
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
                   "name": "Chicken Fajitas",
                   "description": "Two 6' flour tortillas with grilled fajita chicken, grilled peppers and onions and cotija cheese. Served with your choice of side.",
                   "price": 14.0,
@@ -432,66 +352,10 @@
                   ]
                 },
                 {
-                  "name": "Bacon Mac & Cheese",
-                  "description": "Penne pasta tossed in our home made bacon cheddar sauce.",
-                  "price": 9.0,
+                  "name": "Bang Bang Tempura",
+                  "description": "Eight, battered jumbo shrimp tossed in our sweet and sour sauce. Served with your choice of side.",
+                  "price": 15.0,
                   "options": [
-                    {
-                      "name": "Remove Options",
-                      "min": 0,
-                      "max": 0,
-                      "optionItems": [
-                        {
-                          "name": "No Bacon",
-                          "description": "No Bacon",
-                          "price": 0
-                        },
-                        {
-                          "name": "No Sauce",
-                          "description": "No Sauce",
-                          "price": 0
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "name": "\u2713 Portobello Burger",
-                  "description": "A portobello mushroom cap seasoned and grilled, served on a seeded gluten free bun with lettuce and tomato. Served with your choice of side.",
-                  "price": 12.0,
-                  "options": [
-                    {
-                      "name": "Meat Temperature",
-                      "min": 1,
-                      "max": 1,
-                      "optionItems": [
-                        {
-                          "name": "Well Done",
-                          "description": "Well Done",
-                          "price": 0
-                        },
-                        {
-                          "name": "Medium-Well",
-                          "description": "Medium-Well",
-                          "price": 0
-                        },
-                        {
-                          "name": "Medium",
-                          "description": "Medium",
-                          "price": 0
-                        },
-                        {
-                          "name": "Medium-Rare",
-                          "description": "Medium-Rare",
-                          "price": 0
-                        },
-                        {
-                          "name": "Rare",
-                          "description": "Rare",
-                          "price": 0
-                        }
-                      ]
-                    },
                     {
                       "name": "Choice of Side",
                       "min": 1,
@@ -534,6 +398,68 @@
                         }
                       ]
                     },
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Sauce",
+                          "description": "No Sauce",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Bacon Mac & Cheese",
+                  "description": "Penne pasta tossed in our home made bacon cheddar sauce.",
+                  "price": 9.0,
+                  "options": [
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Bacon",
+                          "description": "No Bacon",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Sauce",
+                          "description": "No Sauce",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Fish and Chips",
+                  "description": "Two battered cod filets fried golden and served with an order of French fries and tartar sauce.",
+                  "price": 16.0,
+                  "options": [
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Sauce",
+                          "description": "No Sauce",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Portobello Burger",
+                  "description": "A portobello mushroom cap seasoned and grilled, served on a seeded gluten free bun with lettuce and tomato. Served with your choice of side.",
+                  "price": 12.0,
+                  "options": [
                     {
                       "name": "Remove Options",
                       "min": 0,
@@ -893,6 +819,82 @@
                   ]
                 },
                 {
+                  "name": "Philly Cheesesteak",
+                  "description": "Sliced roasted steak with peppers, onions, and mushrooms, topped with provolone cheese in a footlong hoagie roll. Served with your choice of side.",
+                  "price": 16.0,
+                  "options": [
+                    {
+                      "name": "Choice of Side",
+                      "min": 1,
+                      "max": 1,
+                      "optionItems": [
+                        {
+                          "name": "French Fries",
+                          "description": "French Fries",
+                          "price": 0
+                        },
+                        {
+                          "name": "Sweet Potato Fries",
+                          "description": "Sweet Potato Fries",
+                          "price": 0
+                        },
+                        {
+                          "name": "Onion Rings",
+                          "description": "Onion Rings",
+                          "price": 0
+                        },
+                        {
+                          "name": "Fruit",
+                          "description": "Fruit",
+                          "price": 0
+                        },
+                        {
+                          "name": "Homemade Chips",
+                          "description": "Homemade Chips",
+                          "price": 0
+                        },
+                        {
+                          "name": "Pasta Salad",
+                          "description": "Pasta Salad",
+                          "price": 0
+                        },
+                        {
+                          "name": "Potato Salad",
+                          "description": "Potato Salad",
+                          "price": 0
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Remove Options",
+                      "min": 0,
+                      "max": 0,
+                      "optionItems": [
+                        {
+                          "name": "No Cheese",
+                          "description": "No Cheese",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Onion",
+                          "description": "No Onion",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Mushroom",
+                          "description": "No Mushroom",
+                          "price": 0
+                        },
+                        {
+                          "name": "No Pepper",
+                          "description": "No Pepper",
+                          "price": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
                   "name": "Buffalo Chicken Sandwich",
                   "description": "A fried 8oz chicken breast, tossed in buffalo sauce, topped with pepperjack cheese, bacon, leaf lettuce and tomato on a potato bun. Served with your choice of side.",
                   "price": 17.0,
@@ -984,82 +986,6 @@
                   ]
                 },
                 {
-                  "name": "Philly Cheesesteak",
-                  "description": "Sliced roasted steak with peppers, onions, and mushrooms, topped with provolone cheese in a footlong hoagie roll. Served with your choice of side.",
-                  "price": 16.0,
-                  "options": [
-                    {
-                      "name": "Choice of Side",
-                      "min": 1,
-                      "max": 1,
-                      "optionItems": [
-                        {
-                          "name": "French Fries",
-                          "description": "French Fries",
-                          "price": 0
-                        },
-                        {
-                          "name": "Sweet Potato Fries",
-                          "description": "Sweet Potato Fries",
-                          "price": 0
-                        },
-                        {
-                          "name": "Onion Rings",
-                          "description": "Onion Rings",
-                          "price": 0
-                        },
-                        {
-                          "name": "Fruit",
-                          "description": "Fruit",
-                          "price": 0
-                        },
-                        {
-                          "name": "Homemade Chips",
-                          "description": "Homemade Chips",
-                          "price": 0
-                        },
-                        {
-                          "name": "Pasta Salad",
-                          "description": "Pasta Salad",
-                          "price": 0
-                        },
-                        {
-                          "name": "Potato Salad",
-                          "description": "Potato Salad",
-                          "price": 0
-                        }
-                      ]
-                    },
-                    {
-                      "name": "Remove Options",
-                      "min": 0,
-                      "max": 0,
-                      "optionItems": [
-                        {
-                          "name": "No Cheese",
-                          "description": "No Cheese",
-                          "price": 0
-                        },
-                        {
-                          "name": "No Onion",
-                          "description": "No Onion",
-                          "price": 0
-                        },
-                        {
-                          "name": "No Mushroom",
-                          "description": "No Mushroom",
-                          "price": 0
-                        },
-                        {
-                          "name": "No Pepper",
-                          "description": "No Pepper",
-                          "price": 0
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
                   "name": "The Italian",
                   "description": "Ham, capicola, and pepperoni with lettuce, oil and vinegar, and banana peppers in a footlong hoagie roll. Served with your choice of side.",
                   "price": 15.0,
@@ -1133,7 +1059,7 @@
                 {
                   "name": "JP's Ace",
                   "description": "An Angus beef hotdog topped with chili, coleslaw, mustard and diced red onions in a warmed roll. Solo or with a side.",
-                  "price": 6.0,
+                  "price": 4.0,
                   "options": [
                     {
                       "name": "Choice of Side",
@@ -1209,7 +1135,7 @@
                 {
                   "name": "Soup of the Day",
                   "description": "",
-                  "price": 6.0,
+                  "price": 4.0,
                   "options": []
                 },
                 {
