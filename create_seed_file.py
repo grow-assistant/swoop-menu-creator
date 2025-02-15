@@ -64,6 +64,44 @@ def get_standard_options(option_type: str) -> list[dict]:
     }
     return options.get(option_type, [])
 
+def is_terminal_item(item_name: str, item_description: str = "") -> bool:
+    """Determine if an item is a terminal item (no options or customization)."""
+    item_name_lower = item_name.lower()
+    
+    # Known terminal items
+    terminal_items = [
+        "side",
+        "calamari",
+        "mozzarella sticks",
+        "par three platter",
+        "fish and chips",
+        "bacon mac",
+        "loaded skins",
+        "stuffed mushrooms",
+        "soup of the day",
+        "side house",
+        "side caesar",
+        "bang bang tempura",
+        "loaded quesadilla",
+        "bbq pork quesadilla",
+        "ahi tuna",
+        "chicken fajitas"
+    ]
+    
+    # Check if item name contains any terminal item keywords
+    if any(term in item_name_lower for term in terminal_items):
+        return True
+    
+    # Special cases based on description
+    if "choice of side" in item_description.lower():
+        # Items that mention sides but are actually terminal
+        if any([
+            "fish and chips" in item_name_lower,
+            "bang bang tempura" in item_name_lower
+        ]):
+            return True
+    
+    return False
 def has_item_options(item_name: str, item_options: list, item_description: str = "") -> bool:
     """Determine if an item needs options based on its name, existing options, and description."""
     # Terminal items never have options
@@ -141,9 +179,9 @@ def create_go_seed_file(menu_data, club_name: str, club_address: str):
     go_code.append('package main\n')
     go_code.append('import (')
     go_code.append('\t"log"')
-    go_code.append('\t"swoop/locations"')
-    go_code.append('\t"swoop/pkg/config"')
-    go_code.append('\tdatabase "swoop/pkg/db"')
+    go_code.append('\t"github.com/grow-assistant/swoop-menu-creator/swoop/locations"')
+    go_code.append('\t"github.com/grow-assistant/swoop-menu-creator/swoop/pkg/config"')
+    go_code.append('\tdatabase "github.com/grow-assistant/swoop-menu-creator/swoop/pkg/db"')
     go_code.append(')\n')
     
     # Add config initialization
@@ -185,22 +223,12 @@ def create_go_seed_file(menu_data, club_name: str, club_address: str):
                 
                 # Process items
                 for item in category.items:
-                    # Check if item has options
+                    # Check if item is terminal
+                    is_terminal = is_terminal_item(item.name, item.description)
                     has_options = has_item_options(item.name, item.options, item.description)
-                    needs_variable = False
                     
                     # Determine if item needs a variable assignment
-                    if has_options:
-                        # Check for items that need variables despite no current options
-                        if "choice of side" in item.description.lower():
-                            if not any([
-                                "fish and chips" in item.name.lower(),
-                                "bang bang tempura" in item.name.lower()
-                            ]):
-                                needs_variable = True
-                        # Items with actual options need variables
-                        if len(item.options) > 0:
-                            needs_variable = True
+                    needs_variable = not is_terminal and has_options
                     
                     # Generate item creation code
                     go_code.append(f'\t// Seed item')

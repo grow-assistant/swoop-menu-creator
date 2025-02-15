@@ -3,7 +3,7 @@ package locations
 import (
 	"time"
 
-	"swoop/pkg/db"
+	"github.com/grow-assistant/swoop-menu-creator/swoop/pkg/db"
 )
 
 // API interface for location operations

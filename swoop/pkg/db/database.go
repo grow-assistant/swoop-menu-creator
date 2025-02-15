@@ -3,7 +3,7 @@ package db
 import (
 	"time"
 
-	"swoop/pkg/config"
+	"github.com/grow-assistant/swoop-menu-creator/swoop/pkg/config"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
