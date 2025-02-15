@@ -64,21 +64,33 @@ def get_standard_options(option_type: str) -> list[dict]:
     }
     return options.get(option_type, [])
 
-def has_item_options(item_name: str, item_options: list) -> bool:
-    """Determine if an item needs options based on its name and existing options."""
+def has_item_options(item_name: str, item_options: list, item_description: str = "") -> bool:
+    """Determine if an item needs options based on its name, existing options, and description."""
+    # Side items never have options
+    if "side" in item_name.lower():
+        return False
+        
+    # Check for existing options
     if len(item_options) > 0:
         return True
     
+    # Check item type
     item_name_lower = item_name.lower()
+    
+    # Check for items that should have options based on description
+    if "choice of side" in item_description.lower():
+        return True
+    
     return any([
-        "burger" in item_name_lower,
-        "steak" in item_name_lower,
-        "sandwich" in item_name_lower and "side" not in item_name_lower,
-        "deli" in item_name_lower,
-        "wings" in item_name_lower,
-        "salad" in item_name_lower and "side" not in item_name_lower,
-        "fajitas" in item_name_lower,
-        "nachos" in item_name_lower
+        ("burger" in item_name_lower and not "portobello" in item_name_lower),
+        ("steak" in item_name_lower and not "tuna" in item_name_lower),
+        ("sandwich" in item_name_lower and not "side" in item_name_lower),
+        ("deli" in item_name_lower),
+        ("wings" in item_name_lower),
+        ("salad" in item_name_lower and not "side" in item_name_lower 
+         and not "potato" in item_name_lower and not "pasta" in item_name_lower),
+        ("fajitas" in item_name_lower),
+        ("nachos" in item_name_lower and "choice" in item_description.lower())
     ])
 
 def get_option_min_max(option_name: str, item_name: str = "") -> tuple[int, int]:
@@ -154,13 +166,13 @@ def create_go_seed_file(menu_data, club_name: str, club_address: str):
             go_code.append(f'\t{location_var}{menu_var} := api.CreateMenu("{menu.name}", "{menu.name}", {location_var}.ID)\n')
             
             # Create Sides category first
-            sides_var = f"{location_var}{menu_var}Sides"
+            sides_category_var = f"{location_var}{menu_var}Sides"
             go_code.append(f'\t// Create Sides category')
-            go_code.append(f'\t{sides_var} := api.CreateCategory("Sides", "Sides", {location_var}{menu_var}.ID)\n')
+            go_code.append(f'\t{sides_category_var} := api.CreateCategory("Sides", "Sides", {location_var}{menu_var}.ID)\n')
             
-            # Add side items
+            # Add side items - always use _ assignment since they are terminal items
             for side in side_items:
-                go_code.append(f'\t_ = api.CreateItem("{side["name"]}", "{side["description"]}", {side["price"]}, {sides_var}.ID)\n')
+                go_code.append(f'\t_ = api.CreateItem("{side["name"]}", "{side["description"]}", {side["price"]}, {sides_category_var}.ID)\n')
             go_code.append('\n')
             
             # Process categories
@@ -174,25 +186,16 @@ def create_go_seed_file(menu_data, club_name: str, club_address: str):
                 # Process items
                 for item in category.items:
                     # Check if item has options
-                    has_options = False
-                    if "burger" in item.name.lower() or "steak" in item.name.lower():
-                        has_options = True
-                    elif "sandwich" in item.name.lower() or "deli" in item.name.lower():
-                        has_options = True
-                    elif "wings" in item.name.lower():
-                        has_options = True
-                    elif "salad" in item.name.lower() and not "side" in item.name.lower():
-                        has_options = True
-                    elif len(item.options) > 0:
-                        has_options = True
+                    has_options = has_item_options(item.name, item.options, item.description)
                     
                     # Use _ assignment for terminal items (no options)
                     go_code.append(f'\t// Seed item')
                     if has_options:
-                        item_var = sanitize_name_var(item.name)
-                        full_item_var = f"{full_category_var}{item_var}"
-                        go_code.append(f'\t{full_item_var} := api.CreateItem("{item.name}", "{item.description}", {item.price}, {full_category_var}.ID)\n')
+                        # Generate unique ID by including full path
+                        item_var = sanitize_name_var(item.name, f"{location_var}{menu_var}{category_var}")
+                        go_code.append(f'\t{item_var} := api.CreateItem("{item.name}", "{item.description}", {item.price}, {full_category_var}.ID)\n')
                     else:
+                        # Terminal items use _ assignment
                         go_code.append(f'\t_ = api.CreateItem("{item.name}", "{item.description}", {item.price}, {full_category_var}.ID)\n')
                     
                     # Process options in standard order
@@ -200,17 +203,26 @@ def create_go_seed_file(menu_data, club_name: str, club_address: str):
                                   "Choice of Bread", "Choice of Cheese", "Wings Sauce",
                                   "Wings Dipping Sauce", "Salad Dressing", "Remove Options"]
                     
-                    # Add standard options based on item type
-                    if "burger" in item.name.lower() or "steak" in item.name.lower():
-                        standard_options = ["Meat Temperature", "Choice of Side"]
+                    # Add standard options based on item type and description
+                    standard_options = []
+                    
+                    # Check for items that should have Choice of Side
+                    if any([
+                        "choice of side" in item.description.lower(),
+                        "served with your choice of side" in item.description.lower()
+                    ]):
+                        standard_options.append("Choice of Side")
+                    
+                    # Add other standard options based on item type
+                    if "burger" in item.name.lower():
+                        if not "portobello" in item.name.lower():
+                            standard_options.append("Meat Temperature")
                     elif "sandwich" in item.name.lower() or "deli" in item.name.lower():
-                        standard_options = ["Choice of Side", "Choice of Bread"]
+                        standard_options.append("Choice of Bread")
                     elif "wings" in item.name.lower():
-                        standard_options = ["Wings Sauce", "Wings Dipping Sauce"]
+                        standard_options.extend(["Wings Sauce", "Wings Dipping Sauce"])
                     elif "salad" in item.name.lower() and not "side" in item.name.lower():
-                        standard_options = ["Salad Dressing"]
-                    else:
-                        standard_options = []
+                        standard_options.append("Salad Dressing")
                     
                     # Add standard options first
                     for opt_type in option_order:
@@ -219,7 +231,7 @@ def create_go_seed_file(menu_data, club_name: str, club_address: str):
                             opt_items = get_standard_options(opt_type)
                             if opt_items:
                                 go_code.append(f'\t// Add {opt_type}')
-                                go_code.append(f'\t_ = api.CreateOption("{opt_type}", "{opt_type}", {min_val}, {max_val}, {full_item_var}.ID, []locations.OptionItem{{')
+                                go_code.append(f'\t_ = api.CreateOption("{opt_type}", "{opt_type}", {min_val}, {max_val}, {item_var}.ID, []locations.OptionItem{{')
                                 for opt_item in opt_items:
                                     go_code.append(f'\t\tlocations.OptionItem{{Name: "{opt_item["name"]}", Description: "{opt_item["name"]}", Price: {opt_item["price"]}}},')
                                 go_code.append('\t})\n')
@@ -229,7 +241,7 @@ def create_go_seed_file(menu_data, club_name: str, club_address: str):
                         if option.name not in standard_options:
                             min_val, max_val = get_option_min_max(option.name, item.name)
                             go_code.append(f'\t// Add option')
-                            go_code.append(f'\t_ = api.CreateOption("{option.name}", "{option.name}", {min_val}, {max_val}, {full_item_var}.ID, []locations.OptionItem{{')
+                            go_code.append(f'\t_ = api.CreateOption("{option.name}", "{option.name}", {min_val}, {max_val}, {item_var}.ID, []locations.OptionItem{{')
                             for opt_item in option.option_items:
                                 go_code.append(f'\t\tlocations.OptionItem{{Name: "{opt_item.name}", Description: "{opt_item.name}", Price: {opt_item.price}}},')
                             go_code.append('\t})\n')
@@ -250,6 +262,11 @@ def sanitize_location_var(name: str) -> str:
     """Convert location name to a valid Go variable name."""
     return "".join(x for x in name.title().replace(" ", "") if x.isalnum())
 
-def sanitize_name_var(name: str) -> str:
-    """Convert menu/category/item name to a valid Go variable name."""
-    return "".join(x for x in name.title().replace(" ", "") if x.isalnum())
+def sanitize_name_var(name: str, prefix: str = "") -> str:
+    """Convert menu/category/item name to a valid Go variable name.
+    Args:
+        name: The name to sanitize
+        prefix: Optional prefix to ensure uniqueness across menu levels
+    """
+    sanitized = "".join(x for x in name.title().replace(" ", "") if x.isalnum())
+    return f"{prefix}{sanitized}" if prefix else sanitized
