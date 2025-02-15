@@ -177,12 +177,12 @@ def create_go_seed_file(menu_data, club_name: str, club_address: str):
                     
                     # Use _ assignment for terminal items (no options)
                     go_code.append(f'\t// Seed item')
-                    if has_options:
-                        # Generate unique ID by including full path
+                    if has_options and len(item.options) > 0:
+                        # Only create variable if item actually has options
                         item_var = sanitize_name_var(item.name, f"{location_var}{menu_var}{category_var}")
                         go_code.append(f'\t{item_var} := api.CreateItem("{item.name}", "{item.description}", {item.price}, {full_category_var}.ID)\n')
                     else:
-                        # Terminal items use _ assignment
+                        # Terminal items and items without actual options use _ assignment
                         go_code.append(f'\t_ = api.CreateItem("{item.name}", "{item.description}", {item.price}, {full_category_var}.ID)\n')
                     
                     # Process options in standard order
