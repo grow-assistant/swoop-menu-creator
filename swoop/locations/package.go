@@ -1,7 +1,7 @@
 package locations
 
 import (
-	"swoop/pkg/log"
+	"github.com/grow-assistant/swoop-menu-creator/swoop/pkg/log"
 
 	"github.com/sirupsen/logrus"
 )
