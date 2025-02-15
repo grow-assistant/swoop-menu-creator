@@ -156,9 +156,9 @@ def create_go_seed_file(menu_data, club_name: str, club_address: str):
     go_code.append('package main\n')
     go_code.append('import (')
     go_code.append('\t"log"')
-    go_code.append('\t"swoop/locations"')
-    go_code.append('\t"swoop/pkg/config"')
-    go_code.append('\tdatabase "swoop/pkg/db"')
+    go_code.append('\t"github.com/grow-assistant/swoop-menu-creator/swoop/locations"')
+    go_code.append('\t"github.com/grow-assistant/swoop-menu-creator/swoop/pkg/config"')
+    go_code.append('\tdatabase "github.com/grow-assistant/swoop-menu-creator/swoop/pkg/db"')
     go_code.append(')\n')
     
     # Add config initialization
